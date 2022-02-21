@@ -1,13 +1,14 @@
 console.log("Javascript - лучший язык программирования!");
+function load() {
+  changeGray();
+  changeOrange();
 
-let timeStart = 1500;
 //Меняем приветствие 
 function changeText() {
   let oldText = document.querySelector("#greeting");
   oldText.textContent = "Привет, Виталий Валентинович!";
 }
-//Отлкладываем время для изменения текста
-let timeOutText = setTimeout(changeText, timeStart);
+changeText();
 
 //Меняем цвет фона элементов списка
 function changeColor() {
@@ -16,8 +17,7 @@ function changeColor() {
     oldColor[i].style.background = 'yellow';
 }
 
-//Отлкладываем время для изменения цвета фона
-let timeOutColor = setTimeout(changeColor, timeStart+=1000);
+changeColor();
 
 //Cоздаем тег изображения и вкладываем его в div с идентификатором #greeting
 function addTeg() {
@@ -31,8 +31,7 @@ function addTeg() {
   } 
 }
 
-//Отлкладываем время для добавления тега
-let timeOutTeg = setTimeout(addTeg, timeStart += 1000);
+addTeg();
 
 function addUl(){
   let newElem = document.createElement('ul');
@@ -52,12 +51,12 @@ function addUl(){
   bodyElement.appendChild(newElem)
   }
 
-//Отлкладываем время для добавления списка
-let timeOutAddUl = setTimeout(addUl, timeStart += 1000);
+
+addUl();
 
 //Добавление класса селектед к ли при щелчке о нем и удаление его из любых других ли
 let changeSelectd = document.querySelector("#essentials");
-document.addEventListener("click", addSelected, false);
+  changeSelectd.addEventListener("click", addSelected, false);
 function addSelected(event) {
   let currentLi = event.target.parentNode.childNodes;
   currentLi.forEach(currentLi => {
@@ -66,6 +65,7 @@ function addSelected(event) {
     }
   });
   event.target.classList.add('selected');
+
 
   //Изменяем изображение, чтобы оно было последним выбранным продуктом питания
   let ind = event.target.id;
@@ -76,11 +76,35 @@ function addSelected(event) {
   changeImg.setAttribute('src', picture[ind]);
 }
 
-function changeSquare() {
+//Удаление серого дива
+function changeGray() {
   let square = document.querySelector("#ghosting");
-  alert('!!!')
-  square.style.background = 'red';
+  square.addEventListener("mouseover",() =>{
+    document.querySelector("body").removeChild(square);
+  },false)
 }
 
-changeSquare();
-  
+function changeOrange(){
+  let resize = document.querySelector("#resize");
+  resize.addEventListener("mouseover", () => { resize.style.width = "400px" }, false);
+  resize.addEventListener("mouseout", () => { resize.style.width = "200px" }, false);
+}
+
+  let resetBtn = document.querySelector("#reset")
+  resetBtn.addEventListener("click", btnChange, false);
+  function btnChange() {
+    let curSelect = document.querySelectorAll(".selected");
+    curSelect.forEach(sel => sel.classList.remove('selected'))
+    let changeImg = document.querySelector('#image');
+    changeImg.setAttribute('src', 'images/panic.jpg');
+  }
+ 
+  window.addEventListener("keydown", pressKey, false);
+  function pressKey(event) {
+    if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105))
+      alert("Я НЕНАВИЖУ ЧИСЛААААА!")
+    
+  }
+}
+
+let timeOutLoad =setTimeout(load, 2000);
