@@ -1,5 +1,6 @@
 console.log("Javascript - лучший язык программирования!");
 function load() {
+  
   changeGray();
   changeOrange();
 
@@ -32,7 +33,9 @@ function addTeg() {
 }
 
 addTeg();
-
+//Создание элемента ul в конце боди с классом "todo-items"
+//Создание тега li для каждого элемента массива
+//Добавлениее li в ul класса "todo-items"
 function addUl(){
   let newElem = document.createElement('ul');
   newElem.classList.add('todo-items');
@@ -47,14 +50,13 @@ function addUl(){
     newElem.appendChild(newLi);
   }
   let bodyElement = document.querySelector('body');
-  console.log('выбрали селектор боди');
   bodyElement.appendChild(newElem)
   }
 
 
 addUl();
 
-//Добавление класса селектед к ли при щелчке о нем и удаление его из любых других ли
+//Добавление класса `selected` к `<li>` при щелчке о нем и удаление его из любых других `<li>`
 let changeSelectd = document.querySelector("#essentials");
   changeSelectd.addEventListener("click", addSelected, false);
 function addSelected(event) {
@@ -67,7 +69,7 @@ function addSelected(event) {
   event.target.classList.add('selected');
 
 
-  //Изменяем изображение, чтобы оно было последним выбранным продуктом питания
+  //Изменяем изображение, чтобы оно было в соответствии последним выбранным продуктом питания
   let ind = event.target.id;
   
   let picture = ['images/milk.jpg', 'images/honey.jpg', 'images/water.jpg', 'images/wine.jpg', 'images/beer.jpg']
@@ -76,7 +78,7 @@ function addSelected(event) {
   changeImg.setAttribute('src', picture[ind]);
 }
 
-//Удаление серого дива
+//Удаление серого div из DOM по наведению мыши
 function changeGray() {
   let square = document.querySelector("#ghosting");
   square.addEventListener("mouseover",() =>{
@@ -84,12 +86,14 @@ function changeGray() {
   },false)
 }
 
+//Когда на оранжевый div наводится указатель мыши, его ширина удваивается. Когда мы уходим за пределы div, ширина возвращается к своему первоначальному размеру.
 function changeOrange(){
   let resize = document.querySelector("#resize");
   resize.addEventListener("mouseover", () => { resize.style.width = "400px" }, false);
   resize.addEventListener("mouseout", () => { resize.style.width = "200px" }, false);
 }
 
+//Когда  кнопка Reset нажата удаляется класс `selected` из каждого `<li>` и изменяется изображение на `panic.jpg`.
   let resetBtn = document.querySelector("#reset")
   resetBtn.addEventListener("click", btnChange, false);
   function btnChange() {
@@ -99,6 +103,7 @@ function changeOrange(){
     changeImg.setAttribute('src', 'images/panic.jpg');
   }
  
+//При нажатии клавиши 1, 2, 3, 4, 5, 6, 7, 8, 9 или 0 на странице появляется сообщение «Я НЕНАВИЖУ ЧИСЛААААА!»
   window.addEventListener("keydown", pressKey, false);
   function pressKey(event) {
     if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105))
